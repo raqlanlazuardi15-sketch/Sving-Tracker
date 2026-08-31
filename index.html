@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="description" content="Smart Saving Tracker - nabung menuju target impianmu dengan progress, statistik, dan achievement." />
+<title>Smart Saving Tracker</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128176;</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- Font opsional: kalau offline otomatis fallback ke system font stack -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<!-- Latar dekoratif (blob gradient) -->
+<div class="bg-decor" aria-hidden="true">
+  <span class="blob blob--1"></span>
+  <span class="blob blob--2"></span>
+  <span class="blob blob--3"></span>
+</div>
+
+<div class="app">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand__logo">💰</div>
+      <div class="brand__text">
+        <strong>Smart Saving</strong>
+        <span>Tracker</span>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Navigasi utama">
+      <a class="nav__item" href="#/dashboard"    data-nav="dashboard"><span class="nav__ico">🏠</span> Dashboard</a>
+      <a class="nav__item" href="#/goals"        data-nav="goals"><span class="nav__ico">🎯</span> Goals <span class="nav__badge" id="navGoalCount">0</span></a>
+      <button class="nav__item" type="button" data-action="open-saving"><span class="nav__ico">💰</span> Add Saving</button>
+      <a class="nav__item" href="#/statistics"   data-nav="statistics"><span class="nav__ico">📊</span> Statistics</a>
+      <a class="nav__item" href="#/plan"         data-nav="plan"><span class="nav__ico">📅</span> Saving Plan</a>
+      <a class="nav__item" href="#/achievements" data-nav="achievements"><span class="nav__ico">🏆</span> Achievements</a>
+      <a class="nav__item" href="#/settings"     data-nav="settings"><span class="nav__ico">⚙️</span> Settings</a>
+    </nav>
+
+    <div class="streak-mini glass" id="streakMini"></div>
+  </aside>
+
+  <div class="sidebar-scrim" data-action="close-sidebar" aria-hidden="true"></div>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn only-mobile" type="button" data-action="toggle-sidebar" aria-label="Buka menu">☰</button>
+      <div class="topbar__title">
+        <h1 id="pageTitle">Dashboard</h1>
+        <p id="pageSubtitle">Selamat datang kembali 👋</p>
+      </div>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" data-action="toggle-theme" id="themeBtn" aria-label="Ganti tema">🌙</button>
+        <button class="btn btn--primary" type="button" data-action="open-saving">
+          <span>＋</span> <span class="hide-xs">Add Saving</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- View containers: diisi oleh views.js -->
+    <section class="view" id="view-dashboard"></section>
+    <section class="view" id="view-goals" hidden></section>
+    <section class="view" id="view-statistics" hidden></section>
+    <section class="view" id="view-plan" hidden></section>
+    <section class="view" id="view-achievements" hidden></section>
+    <section class="view" id="view-settings" hidden></section>
+
+    <footer class="foot">
+      Data kamu tersimpan lokal di browser ini (localStorage) · v1.0
+    </footer>
+  </main>
+
+  <!-- ============ BOTTOM NAV (mobile) ============ -->
+  <nav class="tabbar" aria-label="Navigasi mobile">
+    <a href="#/dashboard" data-nav="dashboard"><span>🏠</span>Home</a>
+    <a href="#/goals" data-nav="goals"><span>🎯</span>Goals</a>
+    <button type="button" class="tabbar__fab" data-action="open-saving" aria-label="Tambah tabungan">＋</button>
+    <a href="#/statistics" data-nav="statistics"><span>📊</span>Stats</a>
+    <a href="#/achievements" data-nav="achievements"><span>🏆</span>Badge</a>
+  </nav>
+</div>
+
+<!-- Modal & toast host -->
+<div id="modalRoot"></div>
+<div id="toastRoot" class="toast-root" aria-live="polite"></div>
+<canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+<!-- Script klasik (bukan ES module) supaya bisa dibuka langsung via file:// tanpa server -->
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/calc.js"></script>
+<script src="assets/js/achievements.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/confetti.js"></script>
+<script src="assets/js/views.js"></script>
+<script src="assets/js/modals.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
